@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>پارس پنجره دانشوری</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Vazirmatn', sans-serif;
+        }
+        
+        :root {
+            --gold-light: #f4e4ba;
+            --gold: #d4af37;
+            --gold-dark: #b8962e;
+            --dark-bg: #0a0a0a;
+            --dark-card: #141414;
+            --dark-border: #2a2a2a;
+        }
+        
+        body {
+            background: var(--dark-bg);
+        }
+        
+        .luxury-bg {
+            background: 
+                radial-gradient(ellipse at top, rgba(212, 175, 55, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at bottom, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
+                linear-gradient(180deg, #0a0a0a 0%, #1a1a1a 50%, #0a0a0a 100%);
+            min-height: 100vh;
+        }
+        
+        .card-luxury {
+            background: linear-gradient(145deg, #1a1a1a 0%, #0f0f0f 100%);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            box-shadow: 
+                0 25px 50px -12px rgba(0, 0, 0, 0.8),
+                0 0 100px rgba(212, 175, 55, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05);
+        }
+        
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #f4e4ba 0%, #d4af37 25%, #b8962e 50%, #d4af37 75%, #f4e4ba 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 3s linear infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { background-position: 200% center; }
+            100% { background-position: -200% center; }
+        }
+        
+        .profile-ring-luxury {
+            background: linear-gradient(135deg, #f4e4ba, #d4af37, #b8962e, #d4af37, #f4e4ba);
+            padding: 3px;
+            border-radius: 50%;
+            box-shadow: 
+                0 0 30px rgba(212, 175, 55, 0.4),
+                0 0 60px rgba(212, 175, 55, 0.2);
+            animation: ring-glow 3s ease-in-out infinite;
+        }
+        
+        @keyframes ring-glow {
+            0%, 100% { box-shadow: 0 0 30px rgba(212, 175, 55, 0.4), 0 0 60px rgba(212, 175, 55, 0.2); }
+            50% { box-shadow: 0 0 40px rgba(212, 175, 55, 0.6), 0 0 80px rgba(212, 175, 55, 0.3); }
+        }
+        
+        .btn-luxury {
+            background: linear-gradient(145deg, #1a1a1a 0%, #0f0f0f 100%);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .btn-luxury::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.1), transparent);
+            transition: left 0.6s;
+        }
+        
+        .btn-luxury:hover::before {
+            left: 100%;
+        }
+        
+        .btn-luxury:hover {
+            border-color: rgba(212, 175, 55, 0.6);
+            box-shadow: 
+                0 10px 40px rgba(0, 0, 0, 0.5),
+                0 0 30px rgba(212, 175, 55, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        .btn-luxury-gold {
+            background: linear-gradient(135deg, #d4af37 0%, #b8962e 50%, #d4af37 100%);
+            border: none;
+            color: #0a0a0a;
+            font-weight: 700;
+        }
+        
+        .btn-luxury-gold:hover {
+            background: linear-gradient(135deg, #f4e4ba 0%, #d4af37 50%, #f4e4ba 100%);
+            box-shadow: 
+                0 10px 40px rgba(0, 0, 0, 0.5),
+                0 0 40px rgba(212, 175, 55, 0.4);
+        }
+        
+        .icon-box {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.2) 0%, rgba(212, 175, 55, 0.05) 100%);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+        
+        .icon-box-gold {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.3) 0%, rgba(212, 175, 55, 0.1) 100%);
+            border: 1px solid rgba(212, 175, 55, 0.4);
+        }
+        
+        .stat-card {
+            background: linear-gradient(145deg, #1a1a1a 0%, #0f0f0f 100%);
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.5), transparent);
+        }
+        
+        .divider-gold {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.4), transparent);
+        }
+        
+        .particle-gold {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: radial-gradient(circle, #d4af37, transparent);
+            border-radius: 50%;
+            animation: float-particle 6s infinite ease-in-out;
+        }
+        
+        @keyframes float-particle {
+            0%, 100% { transform: translateY(0) scale(1); opacity: 0.3; }
+            50% { transform: translateY(-30px) scale(1.5); opacity: 0.8; }
+        }
+        
+        .crown-icon {
+            animation: crown-float 2s ease-in-out infinite;
+        }
+        
+        @keyframes crown-float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+        
+        .status-vip {
+            background: linear-gradient(135deg, #d4af37, #b8962e);
+            animation: vip-pulse 2s infinite;
+        }
+        
+        @keyframes vip-pulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.7); }
+            50% { box-shadow: 0 0 0 8px rgba(212, 175, 55, 0); }
+        }
+        
+        .luxury-input {
+            background: rgba(20, 20, 20, 0.8);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            color: #f4e4ba;
+        }
+        
+        .luxury-input:focus {
+            border-color: rgba(212, 175, 55, 0.5);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.1);
+            outline: none;
+        }
+        
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s forwards;
+        }
+        
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .stagger-1 { animation-delay: 0.1s; }
+        .stagger-2 { animation-delay: 0.2s; }
+        .stagger-3 { animation-delay: 0.3s; }
+        .stagger-4 { animation-delay: 0.4s; }
+        .stagger-5 { animation-delay: 0.5s; }
+        .stagger-6 { animation-delay: 0.6s; }
+        .stagger-7 { animation-delay: 0.7s; }
+        
+        .ornament {
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.5), transparent);
+            height: 1px;
+            position: relative;
+        }
+        
+        .ornament::before,
+        .ornament::after {
+            content: '◆';
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #d4af37;
+            font-size: 8px;
+        }
+        
+        .ornament::before { left: 20%; }
+        .ornament::after { right: 20%; }
+        
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #0a0a0a;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #d4af37, #b8962e);
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body class="luxury-bg min-h-screen flex items-center justify-center p-4 relative overflow-x-hidden">
+    <!-- Gold Particles -->
+    <div class="particle-gold top-[10%] left-[10%]" style="animation-delay: 0s;"></div>
+    <div class="particle-gold top-[20%] right-[15%]" style="animation-delay: 1s;"></div>
+    <div class="particle-gold top-[60%] left-[5%]" style="animation-delay: 2s;"></div>
+    <div class="particle-gold top-[80%] right-[10%]" style="animation-delay: 1.5s;"></div>
+    <div class="particle-gold top-[40%] right-[5%]" style="animation-delay: 0.5s;"></div>
+    <div class="particle-gold top-[70%] left-[15%]" style="animation-delay: 2.5s;"></div>
+    <div class="particle-gold top-[30%] left-[20%]" style="animation-delay: 3s;"></div>
+    
+    <div class="max-w-md w-full py-8">
+        <div class="card-luxury rounded-3xl overflow-hidden transform hover:scale-[1.01] transition-all duration-500">
+            <!-- Header -->
+            <div class="relative p-8 text-center overflow-hidden">
+                <!-- Decorative corners -->
+                <div class="absolute top-4 left-4 w-8 h-8 border-t border-l border-amber-600/30"></div>
+                <div class="absolute top-4 right-4 w-8 h-8 border-t border-r border-amber-600/30"></div>
+                <div class="absolute bottom-4 left-4 w-8 h-8 border-b border-l border-amber-600/30"></div>
+                <div class="absolute bottom-4 right-4 w-8 h-8 border-b border-r border-amber-600/30"></div>
+                
+                <!-- Profile Image -->
+                <div class="profile-ring-luxury w-32 h-32 mx-auto mb-5 fade-in-up stagger-1">
+                    <div class="w-full h-full rounded-full overflow-hidden bg-neutral-900">
+                        <img src="profile.jpg" 
+                             alt="پروفایل" 
+                             class="w-full h-full object-cover">
+                    </div>
+                </div>
+                
+                <h1 class="gold-gradient-text text-3xl font-black mb-2 fade-in-up stagger-2">پارس پنجره دانشوری</h1>
+                
+                <!-- Ornament -->
+                <div class="ornament w-48 mx-auto my-4 fade-in-up stagger-3"></div>
+                
+                <p class="text-neutral-400 text-sm max-w-xs mx-auto leading-relaxed fade-in-up stagger-4">
+                    <span class="block mb-2 text-amber-100 font-medium">مشاوره، تولید و نصب درب و پنجره UPVC</span>
+                    <span class="block text-amber-400 text-xs mb-1 text-center">
+                    ۱۵ سال تجربه درخشان
+                    </span>
+                    <span class="block text-amber-400 text-xs text-center">
+                        بزرگترین تولید کننده منطقه
+                    </span>
+                    <span class="block text-amber-400 text-xs mb-1 text-center">
+                        نمایندگی انحصاری پروفیل اورتا در آذربایجان
+                    </span>
+                </p>
+            </div>
+            
+            <!-- Divider -->
+            <div class="divider-gold mx-6"></div>
+            
+            <!-- Content -->
+            <div class="p-6">
+                <!-- Section Title -->
+                <div class="flex items-center gap-3 mb-5">
+                    <div class="w-1 h-6 bg-gradient-to-b from-amber-400 to-amber-600 rounded-full"></div>
+                    <h2 class="text-lg font-bold text-amber-100">راه‌های ارتباطی</h2>
+                    <div class="flex-1 h-px bg-gradient-to-l from-transparent to-amber-600/20"></div>
+                </div>
+                
+                <!-- Buttons -->
+                <div class="space-y-3">
+                    <a href="tel:04142112000" class="btn-luxury flex items-center gap-4 p-4 rounded-2xl fade-in-up stagger-1">
+                        <div class="icon-box w-12 h-12 rounded-xl flex items-center justify-center">
+                            <i class="fas fa-phone-alt text-amber-500 text-lg"></i>
+                        </div>
+                        <div class="flex-1">
+                            <div class="font-bold text-amber-100">تماس تلفنی</div>
+                            <div class="text-sm text-neutral-500">04142112000</div>
+                        </div>
+                        <i class="fas fa-chevron-left text-amber-600/50"></i>
+                    </a>
+                    
+                    <a href="https://t.me/parsupvc2" target="_blank" class="btn-luxury flex items-center gap-4 p-4 rounded-2xl fade-in-up stagger-2">
+                        <div class="icon-box w-12 h-12 rounded-xl flex items-center justify-center">
+                            <i class="fab fa-telegram text-amber-500 text-lg"></i>
+                        </div>
+                        <div class="flex-1">
+                            <div class="font-bold text-amber-100">تلگرام</div>
+                            <div class="text-sm text-neutral-500">@parsupvc2</div>
+                        </div>
+                        <i class="fas fa-chevron-left text-amber-600/50"></i>
+                    </a>
+                    
+                    <a href="https://wa.me/989140749272" target="_blank" class="btn-luxury flex items-center gap-4 p-4 rounded-2xl fade-in-up stagger-3">
+                        <div class="icon-box w-12 h-12 rounded-xl flex items-center justify-center">
+                            <i class="fab fa-whatsapp text-amber-500 text-lg"></i>
+                        </div>
+                        <div class="flex-1">
+                            <div class="font-bold text-amber-100">واتس‌اپ</div>
+                            <div class="text-sm text-neutral-500">پیام مستقیم</div>
+                        </div>
+                        <i class="fas fa-chevron-left text-amber-600/50"></i>
+                    </a>
+                    
+                    <a href="https://instagram.com/parsupvc" target="_blank" class="btn-luxury flex items-center gap-4 p-4 rounded-2xl fade-in-up stagger-4">
+                        <div class="icon-box w-12 h-12 rounded-xl flex items-center justify-center">
+                            <i class="fab fa-instagram text-amber-500 text-lg"></i>
+                        </div>
+                        <div class="flex-1">
+                            <div class="font-bold text-amber-100">اینستاگرام</div>
+                            <div class="text-sm text-neutral-500">@parsupvc</div>
+                        </div>
+                        <i class="fas fa-chevron-left text-amber-600/50"></i>
+                    </a>
+
+                    <a href="https://rubika.ir/parsupvc01" target="_blank" class="btn-luxury flex items-center gap-4 p-4 rounded-2xl fade-in-up stagger-4">
+                        <div class="icon-box w-12 h-12 rounded-xl flex items-center justify-center">
+                            <i class="fas fa-comment-dots text-amber-500 text-lg"></i>
+                        </div>
+                        <div class="flex-1">
+                            <div class="font-bold text-amber-100">روبیکا</div>
+                            <div class="text-sm text-neutral-500">@parsupvc01</div>
+                        </div>
+                        <i class="fas fa-chevron-left text-amber-600/50"></i>
+                    </a>
+                    
+                    <!-- موقعیت مکانی با رنگ طلایی -->
+<a href="https://maps.app.goo.gl/XDM9s259EqdPexjUA" target="_blank" class="btn-luxury-gold flex items-center gap-4 p-4 rounded-2xl fade-in-up stagger-5">
+    <div class="w-12 h-12 bg-black/30 rounded-xl flex items-center justify-center">
+        <i class="fas fa-map-marker-alt text-lg"></i>
+    </div>
+    <div class="flex-1 text-right">
+        <div class="font-bold">موقعیت مکانی</div>
+        <div class="text-sm opacity-70">مشاهده روی نقشه</div>
+    </div>
+    <i class="fas fa-chevron-left opacity-50"></i>
+</a>
+                </div>
+                
+                <!-- Working Hours -->
+                <div class="mt-6 p-5 bg-neutral-900/50 border border-amber-600/10 rounded-2xl">
+                    <div class="flex items-center gap-3 mb-4">
+                        <i class="fas fa-clock text-amber-500"></i>
+                        <span class="font-bold text-amber-100">ساعات کاری</span>
+                    </div>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex justify-between items-center py-2 border-b border-neutral-800">
+                            <span class="text-neutral-400">شنبه - پنجشنبه</span>
+                            <span class="text-amber-200 font-medium">۸:۰۰ الی ۱۴:۰۰</span>
+                            <span class="text-amber-200 font-medium">۱۶:۰۰ الی ۲۰:۰۰</span>
+                        </div>
+                        <div class="flex justify-between items-center py-2">
+                            <span class="text-neutral-400">جمعه</span>
+                            <span class="text-red-400 font-medium">تعطیل</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Footer -->
+            <div class="p-6 text-center border-t border-amber-600/10">
+                <div class="flex items-center justify-center gap-2 mb-2">
+                    <div class="w-8 h-px bg-gradient-to-r from-transparent to-amber-600/30"></div>
+                    <i class="fas fa-gem text-amber-500 text-xs"></i>
+                    <div class="w-8 h-px bg-gradient-to-l from-transparent to-amber-600/30"></div>
+                </div>
+                <p class="text-neutral-500 text-sm mb-1">با افتخار در خدمت شما هستیم</p>
+                <p class="text-neutral-600 text-xs">© 1404 - تمامی حقوق محفوظ است</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Button Click Animation
+        document.querySelectorAll('a, button').forEach(btn => {
+            btn.addEventListener('mousedown', function() {
+                this.style.transform = 'scale(0.97)';
+            });
+            btn.addEventListener('mouseup', function() {
+                this.style.transform = '';
+            });
+            btn.addEventListener('mouseleave', function() {
+                this.style.transform = '';
+            });
+        });
+        
+        // Initialize animations
+        document.addEventListener('DOMContentLoaded', function() {
+            // اضافه کردن تاخیر برای انیمیشن‌ها
+            const animatedElements = document.querySelectorAll('.fade-in-up');
+            animatedElements.forEach((el, index) => {
+                el.style.animationDelay = `${(index + 1) * 0.1}s`;
+            });
+        });
+    </script>
+</body>
+</html>
